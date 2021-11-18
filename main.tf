@@ -18,28 +18,6 @@ module "public_a" {
   tags    = var.tags
 }
 
-module "public_b" {
-  source  = "btower-labz/btlabz-pub-sn/aws"
-  version = "1.0.0-000"
-  vpc_id  = module.main_vpc.vpc_id
-  name    = var.public_b_name
-  az      = local.az_b
-  cidr    = var.public_b_cidr
-  rt_id   = module.main_vpc.rt_id
-  tags    = var.tags
-}
-
-module "public_c" {
-  source  = "btower-labz/btlabz-pub-sn/aws"
-  version = "1.0.0-000"
-  vpc_id  = module.main_vpc.vpc_id
-  name    = var.public_c_name
-  az      = local.az_c
-  cidr    = var.public_c_cidr
-  rt_id   = module.main_vpc.rt_id
-  tags    = var.tags
-}
-
 module "private_a" {
   source  = "btower-labz/btlabz-pri-sn/aws"
   version = "1.0.0-000"
@@ -50,46 +28,10 @@ module "private_a" {
   tags    = var.tags
 }
 
-module "private_b" {
-  source  = "btower-labz/btlabz-pri-sn/aws"
-  version = "1.0.0-000"
-  vpc_id  = module.main_vpc.vpc_id
-  name    = var.private_b_name
-  az      = local.az_b
-  cidr    = var.private_b_cidr
-  tags    = var.tags
-}
-
-module "private_c" {
-  source  = "btower-labz/btlabz-pri-sn/aws"
-  version = "1.0.0-000"
-  vpc_id  = module.main_vpc.vpc_id
-  name    = var.private_c_name
-  az      = local.az_c
-  cidr    = var.private_c_cidr
-  tags    = var.tags
-}
-
 module "nat_a" {
   source    = "btower-labz/btlabz-nat-base/aws"
   version   = "1.0.0-002"
   subnet_id = module.public_a.subnet_id
   name      = var.nat_a_name
-  tags      = var.tags
-}
-
-module "nat_b" {
-  source    = "btower-labz/btlabz-nat-base/aws"
-  version   = "1.0.0-002"
-  subnet_id = module.public_b.subnet_id
-  name      = var.nat_b_name
-  tags      = var.tags
-}
-
-module "nat_c" {
-  source    = "btower-labz/btlabz-nat-base/aws"
-  version   = "1.0.0-002"
-  subnet_id = module.public_c.subnet_id
-  name      = var.nat_c_name
   tags      = var.tags
 }
